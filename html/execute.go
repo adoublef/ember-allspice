@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"path/filepath"
+	"strings"
 	"text/template"
 )
 
@@ -27,10 +29,14 @@ func init() {
 	}
 
 	// TODO
-	// 1. traverse nested folders
-	// 2. ignore files with _*.html pattern
+	// 1. traverse nested folders [href](https://yourbasic.org/golang/list-files-in-directory/)
 	for _, f := range ff {
 		if f.IsDir() {
+			continue
+		}
+
+		// 2. ignore files with _*.html pattern
+		if strings.HasPrefix(f.Name(), "_") {
 			continue
 		}
 
@@ -40,7 +46,8 @@ func init() {
 		}
 
 		// call without extension
-		pm[f.Name()] = pt
+		filename := fileNameWithoutExtSliceNotation(f.Name())
+		pm[filename] = pt
 	}
 
 	// fmt.Println(pm)
@@ -58,4 +65,9 @@ func Execute(wr io.Writer, name string, data any) error {
 	}
 
 	return nil
+}
+
+// fileNameWithoutExtSliceNotation - https://freshman.tech/snippets/go/filename-no-extension/
+func fileNameWithoutExtSliceNotation(filename string) string {
+	return filename[:len(filename)-len(filepath.Ext(filename))]
 }
