@@ -9,12 +9,12 @@ import (
 )
 
 var (
-	AppName, Port string
+	AppName, Addr string
 )
 
 func init() {
-	if Port = os.Getenv("PORT"); Port == "" {
-		Port = "8000"
+	if Addr = ":"+os.Getenv("PORT"); Addr == ":" {
+		Addr = ":8000"
 	}
 
 	if AppName = os.Getenv("FLY_APP_NAME"); AppName == "" {

@@ -13,7 +13,7 @@ func handleIndex() http.HandlerFunc {
 			"Name":  "Golang",
 		}
 
-		if err := html.Execute(w, "index.html", data); err != nil {
+		if err := html.Execute(w, "index", data); err != nil {
 			http.Error(w, "error writing partial "+err.Error(), http.StatusInternalServerError)
 		}
 	}

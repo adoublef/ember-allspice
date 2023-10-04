@@ -12,7 +12,7 @@ func handleAbout() http.HandlerFunc {
 			"Title": "About",
 		}
 
-		if err := html.Execute(w, "about.html", data); err != nil {
+		if err := html.Execute(w, "about", data); err != nil {
 			http.Error(w, "error writing partial "+err.Error(), http.StatusInternalServerError)
 		}
 	}

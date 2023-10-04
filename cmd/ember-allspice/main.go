@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/adoublef/golang-chi/static"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/httplog"
 )
@@ -33,22 +34,25 @@ func main() {
 
 func run(ctx context.Context) (err error) {
 	mux := chi.NewMux()
+
 	logger := newLogger(AppName)
 	mux.Use(httplog.RequestLogger(logger))
 	{
 		mux.Get("/", handleIndex())
 		mux.Get("/about", handleAbout())
 	}
+	mux.Handle("/static/*", &static.Static{Prefix: "/static/"})
 
 	s := http.Server{
-		Addr:         ":" + Port,
+		Addr:         Addr,
 		Handler:      mux,
-		ReadTimeout:  5 * time.Second,
-		WriteTimeout: 10 * time.Second,
-		IdleTimeout:  15 * time.Second,
 		BaseContext: func(l net.Listener) context.Context {
 			return ctx
 		},
+		// figure out way to do better config
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  15 * time.Second,
 	}
 
 	sErr := make(chan error, 1)
