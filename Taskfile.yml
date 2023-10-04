@@ -1,0 +1,15 @@
+version: 3
+
+tasks:
+  cache:
+    cmd: go mod tidy
+
+  dev:
+    deps:
+      - cache
+    cmd: go run ./cmd/ember-allspice/
+
+  img:
+    cmds: 
+      - docker build -t ember-allspice .
+      - docker run --rm -d -p 8000:8000 ember-allspice
