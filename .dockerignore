@@ -1,3 +1,5 @@
 *
 !cmd
 !go.*
+!static
+!html

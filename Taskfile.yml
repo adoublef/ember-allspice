@@ -14,6 +14,11 @@ tasks:
       - cache
     cmd: go run ./cmd/ember-allspice/
 
+  env:
+    cmds:
+      - /bin/bash -i -c dotenv .env 
+      - infisical secrets --path=ember-allspice {{.CLI_ARGS}}
+
   img:
     cmds: 
       - docker build -t ember-allspice .
