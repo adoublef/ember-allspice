@@ -1,11 +1,9 @@
-name: Push
+name: Fly
 
 on:
   push:
     branches: 
       -  main
-    paths: 
-      - cmd/**
 
 jobs:
   deploy:
