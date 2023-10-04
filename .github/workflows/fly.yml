@@ -4,6 +4,7 @@ on:
   push:
     branches: 
       -  main
+# filter on html,cmd 
 
 jobs:
   deploy:
