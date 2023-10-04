@@ -10,32 +10,31 @@ import (
 )
 
 var (
-	//go:embed all:partials all:layouts
+	//go:embed all:partials
 	fsys embed.FS
 
 	pm map[string]*template.Template
 )
 
 func init() {
-	dir := "partials"
-
-	// create map of partials
-	// add to a global register
 	if pm == nil {
 		pm = make(map[string]*template.Template)
 	}
 
-	ff, err := fs.ReadDir(fsys, dir)
+	ff, err := fs.ReadDir(fsys, "partials")
 	if err != nil {
 		panic(err)
 	}
 
+	// TODO
+	// 1. traverse nested folders
+	// 2. ignore files with _*.html pattern
 	for _, f := range ff {
 		if f.IsDir() {
 			continue
 		}
 
-		pt, err := template.ParseFS(fsys, dir+"/"+f.Name(), "layouts/*.html")
+		pt, err := template.ParseFS(fsys, "partials/"+f.Name(), "partials/_*.html")
 		if err != nil {
 			panic(err)
 		}
@@ -44,7 +43,7 @@ func init() {
 		pm[f.Name()] = pt
 	}
 
-	fmt.Println(pm)
+	// fmt.Println(pm)
 }
 
 func Execute(wr io.Writer, name string, data any) error {
