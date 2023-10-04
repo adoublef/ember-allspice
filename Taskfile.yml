@@ -12,12 +12,13 @@ tasks:
   dev:
     deps:
       - cache
-    cmd: go run ./cmd/ember-allspice/
+    cmds:
+    # TODO -- env override
+      - infisical run --env=dev --path=ember-allspice -- go run ./cmd/ember-allspice/
 
   env:
     cmds:
-      - /bin/bash -i -c dotenv .env 
-      - infisical secrets --path=ember-allspice {{.CLI_ARGS}}
+      - infisical secrets --env=dev --path=ember-allspice {{.CLI_ARGS}}
 
   img:
     cmds: 
