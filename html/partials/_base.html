@@ -24,8 +24,16 @@
                 <li>
                     <a href="/">Home</a>
                 </li>
+                
                 <li>
-                    <a href="/about">About</a>
+                    <ul>
+                        <li hx-boost="false">
+                            <a href="/signin">Sign In</a>
+                        </li>
+                        <li>
+                            <a href="/about">About</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </nav>
@@ -33,8 +41,8 @@
     <main>{{template "main" .}}</main>
     <footer>
         <small hx-boost="false">
-            Powered by <a href="https://go.dev">Golang</a>.
-            Source code on <a href="https://github.com/adoublef/ember-allspice">GitHub</a>
+            Powered by <a href="https://go.dev/">Golang</a>.
+            Source code on <a href="https://github.com/adoublef/emberr-allspice">GitHub</a>
         </small>
     </footer>
 </body>
