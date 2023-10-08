@@ -10,6 +10,7 @@ import (
 	"syscall"
 	"time"
 
+	iam "github.com/adoublef/golang-chi/internal/iam/http"
 	"github.com/adoublef/golang-chi/static"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/httplog"
@@ -38,7 +39,8 @@ func run(ctx context.Context) (err error) {
 	logger := newLogger(AppName)
 	mux.Use(httplog.RequestLogger(logger))
 	{
-		mux.Get("/", handleIndex())
+		// 
+		mux.Mount("/", iam.NewService())
 		mux.Get("/about", handleAbout())
 	}
 	mux.Handle("/static/*", &static.Static{Prefix: "/static/"})
