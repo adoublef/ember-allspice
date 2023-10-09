@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/rand"
 	"fmt"
+	"math"
 	"net/http"
 	"os"
 	"time"
@@ -164,7 +165,11 @@ type cookieOption func(*http.Cookie)
 
 func maxAge(t time.Duration) cookieOption {
 	return func(c *http.Cookie) {
-		c.MaxAge = int(t.Seconds())
+		if t < 0 {
+			c.MaxAge = math.MinInt
+		} else {
+			c.MaxAge = int(t.Seconds())
+		}
 	}
 }
 
