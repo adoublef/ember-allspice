@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	iam "github.com/adoublef/golang-chi/internal/iam/http"
-	"github.com/adoublef/golang-chi/static"
+	iam "github.com/adoublef/ember-allspice/internal/iam/http"
+	"github.com/adoublef/ember-allspice/static"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/httplog"
 )

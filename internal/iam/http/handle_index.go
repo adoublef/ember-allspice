@@ -3,7 +3,7 @@ package http
 import (
 	"net/http"
 
-	"github.com/adoublef/golang-chi/html"
+	"github.com/adoublef/ember-allspice/html"
 )
 
 func (s*Service) handleIndex() http.HandlerFunc {

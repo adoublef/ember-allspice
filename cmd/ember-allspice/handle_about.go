@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/adoublef/golang-chi/html"
+	"github.com/adoublef/ember-allspice/html"
 )
 
 func handleAbout() http.HandlerFunc {

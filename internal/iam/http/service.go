@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/adoublef/golang-chi/oauth2"
+	"github.com/adoublef/ember-allspice/oauth2"
 	"github.com/go-chi/chi/v5"
 )
 
