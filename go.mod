@@ -19,6 +19,7 @@ require (
 
 require (
 	github.com/coreos/go-oidc/v3 v3.6.0
+	github.com/google/uuid v1.3.1
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	golang.org/x/oauth2 v0.13.0
