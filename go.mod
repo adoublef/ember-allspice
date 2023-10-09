@@ -1,4 +1,4 @@
-module github.com/adoublef/golang-chi
+module github.com/adoublef/ember-allspice
 
 go 1.21.0
 
